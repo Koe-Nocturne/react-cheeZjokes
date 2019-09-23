@@ -18,31 +18,32 @@ class JokesList extends Component {
 
   upVote(id) {
     this.setState(state => {
-       let jokes = state.jokes.map(joke => {
+      let jokes = state.jokes.map(joke => {
         if (joke.id === id) {
           let score = joke.score + 1;
           return { ...joke, score };
         }
-        return { ...joke };
+        return joke;
       });
-      return {jokes}
+      return { jokes }
     });
   };
 
   downVote(id) {
     this.setState(state => {
       let jokes = state.jokes.map(joke => {
-       if (joke.id === id) {
-         let score = joke.score - 1;
-         return { ...joke, score };
-       }
-       return { ...joke };
-     });
-     return {jokes}
-   });
+        if (joke.id === id) {
+          let score = joke.score - 1;
+          return { ...joke, score };
+        }
+        return joke;
+      });
+      return { jokes }
+    });
   }
 
   async componentDidMount() {
+    //array.from or fill ({length: 10})
     let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     let jokesFill2 = arr.map(() => (axios.get(URL)));
     let responseArray = await Promise.all(jokesFill2);
@@ -54,8 +55,14 @@ class JokesList extends Component {
 
 
   render() {
-    let jokes = this.state.jokes.map(joke => (<Joke joke={joke} key={joke.id} id={joke.id} handleUpVote={this.upVote} handleDownVote={this.downVote} />))
-    // jokes.unshift(<i className="far fa-grin-beam fa-3x fa-spin"></i>)
+    let jokes = this.state.jokes.map(joke => (
+      <Joke
+        joke={joke}
+        key={joke.id}
+        id={joke.id}
+        handleUpVote={this.upVote}
+        handleDownVote={this.downVote}
+      />));
     let loadOrJoke = this.state.jokes.length > 0 ? jokes : <i className="far fa-grin-beam fa-8x fa-spin"></i>
     return (
       <div>

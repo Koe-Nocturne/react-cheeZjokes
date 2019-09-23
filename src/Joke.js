@@ -18,9 +18,11 @@ class Joke extends React.PureComponent {
   render() {
     return (
       <div className="card">
-        <p className="card-body">{this.props.joke.joke}  
-        <button onClick={this.handleUpVote}> <i className="fas fa-thumbs-up"></i></button> <button onClick={this.handleDownVote}><i className="fas fa-thumbs-down"></i></button></p>
-          Score: {this.props.joke.score}
+        <p className="card-body">{this.props.joke.joke}
+          <button onClick={this.handleUpVote}> <i className="fas fa-thumbs-up"></i></button>
+          <button onClick={this.handleDownVote}><i className="fas fa-thumbs-down"></i></button>
+        </p>
+        Score: {this.props.joke.score}
       </div>
     )
   }
