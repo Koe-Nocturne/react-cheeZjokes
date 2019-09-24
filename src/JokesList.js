@@ -48,11 +48,27 @@ class JokesList extends Component {
     let jokesFill2 = arr.map(() => (axios.get(URL)));
     let responseArray = await Promise.all(jokesFill2);
 
+    //current logic does not account for the replacement to possibly
+    //be a duplicate, options could include a while loop in the else statement
+    //while(id.includes(response.data.id){
+    // let response = await axios.get(URL);
+    //})
+    let id = [];
+    for(let i = 0; i < responseArray.length; i++) {
+      if(!id.includes(responseArray[i].data.id)) {
+        id.push(responseArray[i].data.id);
+      } else {
+        let response = await axios.get(URL);
+        responseArray.splice(i, 1);
+        responseArray.unshift(response);
+      }
+    }
+
+
     let jokesWithScore = responseArray.map(joke => ({ ...joke.data, score: 0 }))
 
     this.setState({ jokes: [...jokesWithScore] });
   }
-
 
   render() {
     let jokes = this.state.jokes.map(joke => (
@@ -66,7 +82,7 @@ class JokesList extends Component {
     let loadOrJoke = this.state.jokes.length > 0 ? jokes : <i className="far fa-grin-beam fa-8x fa-spin"></i>
     return (
       <div>
-        <h1>J<i className="far fa-grin-beam fa-spin"></i>kes List</h1>
+        <h1 style={{color: "white"}}>J<i className="far fa-grin-beam fa-spin"></i>kes List</h1>
         {loadOrJoke}
       </div>
     )
