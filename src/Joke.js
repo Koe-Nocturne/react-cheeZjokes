@@ -17,9 +17,24 @@ class Joke extends React.PureComponent {
   }
 
   render() {
+    //separates joke from punchline
+    let joke = this.props.joke.joke;
+    let jokeText = "";
+    let punchline = "";
+    if(joke.includes(".") && (joke.indexOf(".") < joke.length-2)) {
+      console.log(joke.length);
+      jokeText = joke.slice(0, joke.indexOf(".")+1);
+      punchline = joke.slice(joke.indexOf(".")+1);
+    } else if (joke.includes("?")) {
+      jokeText = joke.slice(0, joke.indexOf("?")+1);
+      punchline = joke.slice(joke.indexOf("?")+1);
+    } else {
+      jokeText = joke;
+    }
+
     return (
       <div className="card mx-5" style={{backgroundColor: "white"}}>
-        <p className="card-body">{this.props.joke.joke}
+        <p className="card-body">{jokeText} <br></br> {punchline}
         </p>
         <span>
           <button onClick={this.handleUpVote} className="button">
