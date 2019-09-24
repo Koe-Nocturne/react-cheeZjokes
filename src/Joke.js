@@ -21,29 +21,37 @@ class Joke extends React.PureComponent {
     let joke = this.props.joke.joke;
     let jokeText = "";
     let punchline = "";
-    if(joke.includes(".") && (joke.indexOf(".") < joke.length-2)) {
+    if (joke.includes(".") && (joke.indexOf(".") < joke.length - 6)) {
       console.log(joke.length);
-      jokeText = joke.slice(0, joke.indexOf(".")+1);
-      punchline = joke.slice(joke.indexOf(".")+1);
+      jokeText = joke.slice(0, joke.indexOf(".") + 1);
+      punchline = joke.slice(joke.indexOf(".") + 1);
     } else if (joke.includes("?")) {
-      jokeText = joke.slice(0, joke.indexOf("?")+1);
-      punchline = joke.slice(joke.indexOf("?")+1);
+      jokeText = joke.slice(0, joke.indexOf("?") + 1);
+      punchline = joke.slice(joke.indexOf("?") + 1);
     } else {
       jokeText = joke;
     }
 
     return (
-      <div className="card mx-5" style={{backgroundColor: "white"}}>
-        <p className="card-body">{jokeText} <br></br> {punchline}
-        </p>
-        <span>
-          <button onClick={this.handleUpVote} className="button">
-            <i className="fas fa-thumbs-up"></i>
-          </button>
-          <button onClick={this.handleDownVote} className="button">
-            <i className="fas fa-thumbs-down"></i>
-          </button></span>
-        Score: {this.props.joke.score}
+      <div className="card mx-3">
+        <div className="row no-gutters">
+          <div className="col-md-7">
+            <div className="card-body">
+              {jokeText} <br></br> {punchline}
+            </div>
+          </div>
+          <div className="col-md-5">
+            <span>
+              <button onClick={this.handleUpVote} className="button">
+                <i className="fas fa-thumbs-up"></i>
+              </button>
+              <button onClick={this.handleDownVote} className="button">
+                <i className="fas fa-thumbs-down"></i>
+              </button>
+              <span className="score">{this.props.joke.score}</span>
+            </span>
+          </div>
+        </div>
       </div>
     );
   }

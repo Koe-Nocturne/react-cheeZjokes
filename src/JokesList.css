@@ -1,3 +1,13 @@
+h1 {
+    font-family: 'Fredoka One', cursive;
+    color: white;
+    font-size: 60px;
+}
+
+.jokes-list {
+    margin-left: 18em; 
+}
+
 .far {
     color: #f9863a;
 }

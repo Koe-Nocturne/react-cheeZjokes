@@ -54,8 +54,8 @@ class JokesList extends Component {
     // let response = await axios.get(URL);
     //})
     let id = [];
-    for(let i = 0; i < responseArray.length; i++) {
-      if(!id.includes(responseArray[i].data.id)) {
+    for (let i = 0; i < responseArray.length; i++) {
+      if (!id.includes(responseArray[i].data.id)) {
         id.push(responseArray[i].data.id);
       } else {
         let response = await axios.get(URL);
@@ -63,7 +63,6 @@ class JokesList extends Component {
         responseArray.unshift(response);
       }
     }
-
 
     let jokesWithScore = responseArray.map(joke => ({ ...joke.data, score: 0 }))
 
@@ -82,8 +81,10 @@ class JokesList extends Component {
     let loadOrJoke = this.state.jokes.length > 0 ? jokes : <i className="far fa-grin-beam fa-8x fa-spin"></i>
     return (
       <div>
-        <h1 style={{color: "white"}}>J<i className="far fa-grin-beam fa-spin"></i>kes List</h1>
-        {loadOrJoke}
+        <h1>DAD J<i className="far fa-grin-beam fa-spin"></i>KES!</h1>
+        <div className="jokes-list">
+          {loadOrJoke}
+        </div>
       </div>
     )
   };

@@ -1,3 +1,27 @@
+.card {
+    background-color: whitesmoke;
+    max-width: 840px;
+    margin: 1em;
+}
+
+.card-body {
+    font-family: 'News Cycle', sans-serif;
+    font-size: 22px;
+    width: 90%;
+    max-width: 700px;
+    margin: .5em auto;
+    text-align: center;
+}
+
+.score {
+    font-size: 20px;
+    margin-left: 2em;
+}
+
+.col-md-5 {
+    margin-top: 3em;
+}
+
 .button {
     background-color: Transparent;
     background-repeat:no-repeat;
